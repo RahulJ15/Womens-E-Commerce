@@ -8,3 +8,4 @@ streamlit
 streamlit-custom-notification-box
 streamlit_extras
 statsmodels
+scipy
