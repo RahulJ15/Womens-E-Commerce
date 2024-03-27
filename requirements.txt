@@ -10,3 +10,4 @@ streamlit_extras
 statsmodels
 scipy
 matplotlib
+arrow
