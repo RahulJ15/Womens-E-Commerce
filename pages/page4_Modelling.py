@@ -271,38 +271,38 @@ elif model_type == "hierarchical clustering":
 
 
     
-    st.write("""
-         -Marketing Stratergy Analysis-
+        st.write("""
+            -Marketing Stratergy Analysis-
 
 
-    Customer Segmentation:
-    - Customers are segmented into three distinct groups, potentially based on purchasing behavior, demographics, or product preferences.
-    - Segment 0 represents the largest customer base, suggesting a general marketing strategy with broad appeal.
-    - Segment 1 is smaller, which could indicate a niche market that may respond to more specialized marketing campaigns.
-    - Segment 2, being the smallest, might represent a premium or atypical segment that requires unique marketing approaches, possibly higher-value customers with specific needs.
+        Customer Segmentation:
+        - Customers are segmented into three distinct groups, potentially based on purchasing behavior, demographics, or product preferences.
+        - Segment 0 represents the largest customer base, suggesting a general marketing strategy with broad appeal.
+        - Segment 1 is smaller, which could indicate a niche market that may respond to more specialized marketing campaigns.
+        - Segment 2, being the smallest, might represent a premium or atypical segment that requires unique marketing approaches, possibly higher-value customers with specific needs.
 
-    Targeted Marketing:
-    - The PCA plots suggest different variance in customer characteristics; marketing can tailor messages to highlight features or products that resonate with each segment's interests.
-    - Overlaps in the 2D PCA plot imply some shared interests between segments 0 and 1, hinting at the potential for cross-selling strategies.
-    - The distinct separation of segment 2 in the 3D plot suggests unique traits that could be leveraged for highly targeted marketing.
+        Targeted Marketing:
+        - The PCA plots suggest different variance in customer characteristics; marketing can tailor messages to highlight features or products that resonate with each segment's interests.
+        - Overlaps in the 2D PCA plot imply some shared interests between segments 0 and 1, hinting at the potential for cross-selling strategies.
+        - The distinct separation of segment 2 in the 3D plot suggests unique traits that could be leveraged for highly targeted marketing.
 
-    Resource Allocation:
-    - Given the size of segment 0, more resources could be allocated to target this group for general marketing campaigns aimed at volume sales.
-    - Segments 1 and 2 may require more personalized engagement strategies, possibly requiring a higher investment per customer but potentially yielding higher margins.
+        Resource Allocation:
+        - Given the size of segment 0, more resources could be allocated to target this group for general marketing campaigns aimed at volume sales.
+        - Segments 1 and 2 may require more personalized engagement strategies, possibly requiring a higher investment per customer but potentially yielding higher margins.
 
-    Product Development:
-    - Insights from clustering can guide product development to better serve the identified segments, focusing on features and services valued by each group.
-    - The differences in clusters may reflect different usage patterns or needs, guiding the development of customized products.
+        Product Development:
+        - Insights from clustering can guide product development to better serve the identified segments, focusing on features and services valued by each group.
+        - The differences in clusters may reflect different usage patterns or needs, guiding the development of customized products.
 
-    Customer Retention:
-    - By understanding the characteristics of each cluster, retention strategies can be tailored to address the specific desires or pain points of each segment.
-    - Smaller clusters may indicate customers at risk of churn who could benefit from targeted retention programs.
+        Customer Retention:
+        - By understanding the characteristics of each cluster, retention strategies can be tailored to address the specific desires or pain points of each segment.
+        - Smaller clusters may indicate customers at risk of churn who could benefit from targeted retention programs.
 
-    Market Positioning:
-    - If clusters align with different product lines or services, this can inform how to position these offerings in the market effectively.
-    - The unique characteristics of segment 2 could guide premium positioning or the introduction of loyalty programs.
+        Market Positioning:
+        - If clusters align with different product lines or services, this can inform how to position these offerings in the market effectively.
+        - The unique characteristics of segment 2 could guide premium positioning or the introduction of loyalty programs.
 
-            """)
+                """)
 
 elif model_type == "DBSCAN":
     # DBSCAN Clustering Visualization and Parameter Selection
