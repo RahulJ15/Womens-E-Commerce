@@ -271,7 +271,7 @@ elif model_type == "hierarchical clustering":
 
 
     
-        st.write("""
+    st.write("""
             -Marketing Stratergy Analysis-
 
 
