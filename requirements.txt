@@ -6,4 +6,4 @@ plotly
 textblob
 streamlit
 streamlit-custom-notification-box
-streamlit-extras
+streamlit_extras
