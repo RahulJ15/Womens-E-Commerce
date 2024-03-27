@@ -85,7 +85,6 @@ if model_type == "k-means":
 
         # Perform aggregation on numeric columns
         cluster_stats = numeric_columns.groupby('Cluster').agg(['mean', 'std']).reset_index()
-
         
         # Renaming columns for a cleaner look
         cluster_stats.columns = ['_'.join(col).strip() for col in cluster_stats.columns.values]
@@ -106,53 +105,76 @@ if model_type == "k-means":
         st.dataframe(cluster_std_stats)
         
         # Description after cluster statistics tables
-        st.write("""
-        - **Cluster 0:** Low ratings, not recommended often, diverse feedback.
-        - **Cluster 1:** High ratings, highly recommended, consistent feedback.
-        - **Cluster 2:** High ratings like Cluster 1, slightly more varied feedback.
-        - **Age:** Not a key differentiator across clusters.
-        """)
-        
-        # Scatter plot visualizations for specified pairs of features
-        st.subheader("Scatter Plots by Cluster")
-        
-        # Scatter plot for Age vs. Rating
-        fig_age_rating = px.scatter(data, x='Rating', y='Age', color='Cluster', 
-                                    title="Rating vs. Age (Colored by Cluster)")
-        st.plotly_chart(fig_age_rating)
-        
-        st.write("""
-                - Ratings are consistently high across all age groups for Clusters 1 and 2.
-                - Cluster 0 shows a wider spread of ages at lower ratings
-        """)
-        
-        # Scatter plot for Age vs. Positive Feedback Count
-        fig_age_positive_feedback = px.scatter(data, x='Age', y='Positive Feedback Count', color='Cluster', 
-                                               title="Age vs. Positive Feedback Count  (Colored by Cluster)")
-        st.plotly_chart(fig_age_positive_feedback)
+        if num_clusters == 3:  # Display inferences only when k=3
+            st.write("""
+            - **Cluster 0:** Low ratings, not recommended often, diverse feedback.
+            - **Cluster 1:** High ratings, highly recommended, consistent feedback.
+            - **Cluster 2:** High ratings like Cluster 1, slightly more varied feedback.
+            - **Age:** Not a key differentiator across clusters.
+            """)
+            
+            # Scatter plot visualizations for specified pairs of features
+            st.subheader("Scatter Plots by Cluster")
+            
+            # Scatter plot for Age vs. Rating
+            fig_age_rating = px.scatter(data, x='Rating', y='Age', color='Cluster', 
+                                        title="Rating vs. Age (Colored by Cluster)")
+            st.plotly_chart(fig_age_rating)
+            
+            st.write("""
+                    - Ratings are consistently high across all age groups for Clusters 1 and 2.
+                    - Cluster 0 shows a wider spread of ages at lower ratings
+            """)
+            
+            # Scatter plot for Age vs. Positive Feedback Count
+            fig_age_positive_feedback = px.scatter(data, x='Age', y='Positive Feedback Count', color='Cluster', 
+                                                   title="Age vs. Positive Feedback Count  (Colored by Cluster)")
+            st.plotly_chart(fig_age_positive_feedback)
+    
+            st.write("""
+                    - Most of the positive feedback is given by a younger demographic across all clusters.
+                    - Older age groups provide relatively less feedback.
+            """)
+    
+            # Scatter plot for Rating vs. Positive Feedback Count
+            fig_rating_positive_feedback = px.scatter(data, x='Rating', y='Positive Feedback Count', color='Cluster', 
+                                                      title="Rating vs. Positive Feedback Count (Colored by Cluster)")
+            st.plotly_chart(fig_rating_positive_feedback)
+    
+            st.write("""
+                    - Higher ratings do not necessarily correspond to a higher positive feedback count.
+                    - Lower ratings (primarily in Cluster 0) have a wider range of feedback counts, suggesting variability in customer engagement.
+            """)
+    
+            # Concluding with marketing insights derived from clustering
+            st.subheader("Actionable Marketing Insights from K-Means Clustering")
+            st.write("""
+            - **Turnaround Plan for Cluster 0:** Dive deep into feedback, unveil the 'whys' of dissatisfaction, and launch targeted campaigns that say 'We've listened!'
+            - **Amplify Voices from Clusters 1 & 2:** Celebrate the high-spirited reviews and recommendations with compelling stories for powerful word-of-mouth buzz.
+            - **Energize the Youth Quotient:** Craft exclusive, youthful engagement programs that turn the feedback-rich younger demographic into trendsetting brand ambassadors.
+            """)
+        else:
+            st.write(f"Graphs are displayed for {num_clusters} clusters.")
+            # Scatter plot visualizations for specified pairs of features
+            st.subheader("Scatter Plots by Cluster")
+            
+            # Scatter plot for Age vs. Rating
+            fig_age_rating = px.scatter(data, x='Rating', y='Age', color='Cluster', 
+                                        title="Rating vs. Age (Colored by Cluster)")
+            st.plotly_chart(fig_age_rating)
+            
+            # Scatter plot for Age vs. Positive Feedback Count
+            fig_age_positive_feedback = px.scatter(data, x='Age', y='Positive Feedback Count', color='Cluster', 
+                                                   title="Age vs. Positive Feedback Count  (Colored by Cluster)")
+            st.plotly_chart(fig_age_positive_feedback)
+    
+            # Scatter plot for Rating vs. Positive Feedback Count
+            fig_rating_positive_feedback = px.scatter(data, x='Rating', y='Positive Feedback Count', color='Cluster', 
+                                                      title="Rating vs. Positive Feedback Count (Colored by Cluster)")
+            st.plotly_chart(fig_rating_positive_feedback)
 
-        st.write("""
-                - Most of the positive feedback is given by a younger demographic across all clusters.
-                - Older age groups provide relatively less feedback.
-        """)
 
-        # Scatter plot for Rating vs. Positive Feedback Count
-        fig_rating_positive_feedback = px.scatter(data, x='Rating', y='Positive Feedback Count', color='Cluster', 
-                                                  title="Rating vs. Positive Feedback Count (Colored by Cluster)")
-        st.plotly_chart(fig_rating_positive_feedback)
 
-        st.write("""
-                - Higher ratings do not necessarily correspond to a higher positive feedback count.
-                - Lower ratings (primarily in Cluster 0) have a wider range of feedback counts, suggesting variability in customer engagement.
-        """)
-
-                # Concluding with marketing insights derived from clustering
-        st.subheader("Actionable Marketing Insights from K-Means Clustering")
-        st.write("""
-        - **Turnaround Plan for Cluster 0:** Dive deep into feedback, unveil the 'whys' of dissatisfaction, and launch targeted campaigns that say 'We've listened!'
-        - **Amplify Voices from Clusters 1 & 2:** Celebrate the high-spirited reviews and recommendations with compelling stories for powerful word-of-mouth buzz.
-        - **Energize the Youth Quotient:** Craft exclusive, youthful engagement programs that turn the feedback-rich younger demographic into trendsetting brand ambassadors.
-        """)
 
 elif model_type == "hierarchical clustering":
     st.write("Hierarchical clustering model selected.")
