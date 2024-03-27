@@ -189,6 +189,9 @@ elif model_type == "hierarchical clustering":
         # Perform hierarchical clustering
         hc = AgglomerativeClustering(n_clusters=3, linkage='ward')
         data['Cluster'] = hc.fit_predict(features_scaled)
+
+        # Convert 'Cluster' column to integer type
+        data['Cluster'] = data['Cluster'].astype(int)
         
         # Calculate linkage matrix
         linkage_matrix = sch.linkage(features_scaled.T, method='ward')  # Transpose the DataFrame for correct orientation
