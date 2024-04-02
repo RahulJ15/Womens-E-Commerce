@@ -178,42 +178,43 @@ if model_type == "k-means":
 elif model_type == "hierarchical clustering":
     st.write("Hierarchical clustering model selected.")
 
-# Perform Hierarchical Clustering and display results
-if st.button("Perform Clustering"):
-    st.write("Performing Hierarchical Clustering...")
-    
-    # Standardizing the features
-    features = data.select_dtypes(include=[np.number])
-    scaler = StandardScaler()
-    features_scaled = scaler.fit_transform(features)
-    
-    # Reduce dimensionality using PCA
-    pca = PCA(n_components=0.95)  # Retain 95% of variance
-    features_pca = pca.fit_transform(features_scaled)
-    
-    # Perform hierarchical clustering
-    num_clusters = 3  # Number of clusters
-    hc = AgglomerativeClustering(n_clusters=num_clusters, linkage='ward')
-    data['Cluster'] = hc.fit_predict(features_pca)
+    # Button for performing hierarchical clustering
+    if st.button("Perform Hierarchical Clustering"):
+        st.write("Performing Hierarchical Clustering...")
+        
+        # Standardizing the features
+        features = data.select_dtypes(include=[np.number])
+        scaler = StandardScaler()
+        features_scaled = scaler.fit_transform(features)
+        
+        # Reduce dimensionality using PCA
+        pca = PCA(n_components=0.95)  # Retain 95% of variance
+        features_pca = pca.fit_transform(features_scaled)
+        
+        # Perform hierarchical clustering
+        num_clusters = 3  # Number of clusters
+        hc = AgglomerativeClustering(n_clusters=num_clusters, linkage='ward')
+        data['Cluster'] = hc.fit_predict(features_pca)
 
-    # Convert 'Cluster' column to integer type
-    data['Cluster'] = data['Cluster'].astype(int)
-    
-    # Calculate linkage matrix
-    linkage_matrix = sch.linkage(features_pca, method='ward')
+        # Convert 'Cluster' column to integer type
+        data['Cluster'] = data['Cluster'].astype(int)
+        
+        # Calculate linkage matrix
+        linkage_matrix = sch.linkage(features_pca, method='ward')
 
-    # Create dendrogram figure
-    dendrogram = ff.create_dendrogram(linkage_matrix)
-    
-    # Display dendrogram
-    st.plotly_chart(dendrogram.figure)
+        # Create dendrogram figure
+        dendrogram = ff.create_dendrogram(linkage_matrix)
+        
+        # Display dendrogram
+        st.plotly_chart(dendrogram.figure)
 
-    # Display additional insights and visualizations
-    st.subheader("Additional Insights:")
-    st.write("""
-    - You can observe the dendrogram to understand how clusters are merged at different distances.
-    - Experiment with different parameters for hierarchical clustering, PCA, and preprocessing steps for further analysis.
-    """)
+        # Display additional insights and visualizations
+        st.subheader("Additional Insights:")
+        st.write("""
+        - You can observe the dendrogram to understand how clusters are merged at different distances.
+        - Experiment with different parameters for hierarchical clustering, PCA, and preprocessing steps for further analysis.
+        """)
+
 
 
 elif model_type == "DBSCAN":
