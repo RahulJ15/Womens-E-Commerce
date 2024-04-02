@@ -175,8 +175,7 @@ if model_type == "k-means":
 
 
 
-
-elif model_type == "Hierarchical clustering":
+elif model_type == "hierarchical clustering":
     st.write("Hierarchical clustering model selected.")
 
     # Perform Hierarchical Clustering and display results
@@ -320,6 +319,7 @@ elif model_type == "Hierarchical clustering":
         - If clusters align with different product lines or services, this can inform how to position these offerings in the market effectively.
         - The unique characteristics of segment 2 could guide premium positioning or the introduction of loyalty programs.
         """)
+
 
 
 elif model_type == "DBSCAN":
